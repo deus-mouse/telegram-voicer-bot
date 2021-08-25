@@ -23,22 +23,18 @@ def handle(message):
     with open("voice_ogg.ogg", "wb") as f:
         f.write(down_file)
 
-    print("Сохранили")
-
     process = subprocess.run(['ffmpeg', '-i', 'voice_ogg.ogg', 'voice_wav.wav', '-y'])
 
     file = sr.AudioFile('voice_wav.wav')
-    print("Передали в file")
-    print(file)
 
-    with file:
-        audio = r.record(file)
-        print("audio = r.record(source)")
-        text = r.recognize_google(audio, language="ru_RU")
-        print("text = r.recognize_google(audio, language=ru_RU)")
+    try:
+        with file:
+            audio = r.record(file)
+            text = r.recognize_google(audio, language="ru_RU")
 
-        bot.send_message(message.chat.id, text)
-        print("bot.send_message(message.chat.id, text)")
+            bot.send_message(message.chat.id, text, reply_to_message_id=message.message_id)
+    except Exception as ex:
+        bot.send_message(message.chat.id, "пшык/рыг/пердежь")
 
 
 bot.polling(none_stop=True)
