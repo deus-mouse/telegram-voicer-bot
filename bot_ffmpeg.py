@@ -1,18 +1,17 @@
-'''
-https://www.youtube.com/watch?v=0Usraq7SjiM
-https://www.youtube.com/watch?v=eMk4feaZ6Gs
-'''
-import time
+# - *- coding: utf- 8 - *-
 
 import telebot
 import speech_recognition as sr
 import subprocess
+from importlib import reload
+import sys
+reload(sys)
 
-from config import bot_token
+import config
 
 r = sr.Recognizer()
 
-bot = telebot.TeleBot(bot_token)
+bot = telebot.TeleBot(config.bot_token)
 
 
 @bot.message_handler(content_types=["voice"])
