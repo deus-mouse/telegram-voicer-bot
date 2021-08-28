@@ -29,32 +29,32 @@ all_pattern_3 = r'@все'
 
 users = []
 
-# @bot.message_handler(content_types=["voice"])
-# def voice_handler(message):
-#     id_file = message.voice.file_id
-#     file = bot.get_file(id_file)
-#     down_file = bot.download_file(file.file_path)
-#     with open("voice_ogg.ogg", "wb") as f:
-#         f.write(down_file)
-#
-#     process = subprocess.run(['ffmpeg', '-i', 'voice_ogg.ogg', 'voice_wav.wav', '-y'])
-#
-#     file = sr.AudioFile('voice_wav.wav')
-#
-    # try:
-    #     with file:
-    #         audio = r.record(file)
-    #         text = r.recognize_google(audio, language="ru_RU")
-    #
-    #         matched_1 = re.search(mac_pattern_1, text)
-    #         matched_3 = re.search(mac_pattern_3, text)
-    #
-    #         bot.send_message(message.chat.id, text, reply_to_message_id=message.message_id)
-    #         if matched_1 and matched_3:
-    #             bot.send_message(message.chat.id, "сам ты говно", reply_to_message_id=message.message_id)
-    #
-    # except Exception as ex:
-    #     bot.send_message(message.chat.id, "пшык/рыг/пердежь", reply_to_message_id=message.message_id)
+@bot.message_handler(content_types=["voice"])
+def voice_handler(message):
+    id_file = message.voice.file_id
+    file = bot.get_file(id_file)
+    down_file = bot.download_file(file.file_path)
+    with open("voice_ogg.ogg", "wb") as f:
+        f.write(down_file)
+
+    process = subprocess.run(['ffmpeg', '-i', 'voice_ogg.ogg', 'voice_wav.wav', '-y'])
+
+    file = sr.AudioFile('voice_wav.wav')
+
+    try:
+        with file:
+            audio = r.record(file)
+            text = r.recognize_google(audio, language="ru_RU")
+
+            matched_1 = re.search(mac_pattern_1, text)
+            matched_3 = re.search(mac_pattern_3, text)
+
+            bot.send_message(message.chat.id, text, reply_to_message_id=message.message_id)
+            if matched_1 and matched_3:
+                bot.send_message(message.chat.id, "сам ты говно", reply_to_message_id=message.message_id)
+
+    except Exception as ex:
+        bot.send_message(message.chat.id, "пшык/рыг/пердежь", reply_to_message_id=message.message_id)
 
 
 @bot.message_handler(content_types=["text"])
