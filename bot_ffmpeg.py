@@ -27,7 +27,21 @@ all_pattern_1 = r'[Рр]ебят'
 all_pattern_2 = r'@all'
 all_pattern_3 = r'@все'
 
-users = []
+sich_members = {"Я": 279478014,
+                "Влад": 226334433,
+                "Мех": 368933884,
+                "Авдеев": 84857915,
+                "Артем": 359600402,
+                "Андрей": 251890418,
+                "Крем": 150825016,
+                "Валек": 135607947,
+                "Вадим": 223594982,
+                "Кодзима": 330559689,
+                }
+
+family_members = [565280817, 457526700, 402577355, 279478014, 565712281,
+279478014, 226334433, 368933884, 84857915, 359600402, 251890418, 150825016, 135607947, 223594982, 330559689]
+
 
 @bot.message_handler(content_types=["voice"])
 def voice_handler(message):
@@ -64,15 +78,32 @@ def text_handler(message):
     if matched_1 and matched_2:
         bot.send_message(message.chat.id, "сам ты говно", reply_to_message_id=message.message_id)
 
-    matched_4 = re.search(son_pattern_1, message.text)
-    matched_5 = re.search(son_pattern_2, message.text)
-    if matched_4 and matched_5:
-        bot.send_message(message.chat.id, "спасибо создатель \U0001F916", reply_to_message_id=message.message_id)
+    # Молодец сына -
+    # matched_4 = re.search(son_pattern_1, message.text)
+    # matched_5 = re.search(son_pattern_2, message.text)
+    # if matched_4 and matched_5:
+    #     bot.send_message(message.chat.id, "спасибо создатель \U0001F916", reply_to_message_id=message.message_id)
 
-    # matched_5 = re.search(all_pattern_1, message.text)
+    matched_5 = re.search(all_pattern_2, message.text)
+    matched_6 = re.search(all_pattern_3, message.text)
 
-    if message.from_user.id not in users:
-        users.append(message.from_user.id)
+    if matched_5 or matched_6:
+        usernames = ""
+        mentions = []
+        for member in sich_members:
+            user_id = sich_members[member]
+            username = bot.get_chat_member(message.chat.id, user_id).user.username
+            if username is None:
+                username = "Хуйбезника"
+            mention = "["+username+"](tg://user?id="+str(user_id)+")"
+            mentions.append(mention)
+        string = ' '.join(mentions)
+
+        bot.send_message(message.chat.id, string, parse_mode="Markdown")
+
+    # данный блок собирает id вновь написавших пользователей
+    if message.from_user.id not in family_members:
+        family_members.append(message.from_user.id)
         username = bot.get_chat_member(message.chat.id, message.from_user.id).user.username
         bot.send_message(279478014, f"новый пользователь {username} = {message.from_user.id}")
 
