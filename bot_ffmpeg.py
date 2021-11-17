@@ -40,18 +40,12 @@ sich_members = {"Я": 279478014,
                 }
 
 family_members = {"Я": 279478014,
-                "Денис": 565712281,
-                "Настя": 402577355,
-                "Лена": 457526700,
-                "Лиза": 565280817,
-                "Тоня": 279478014,
-                }
-    # [565280817,
-# 457526700,
-# 402577355,
-# 279478014,
-# 565712281]
-# 279478014, 226334433, 368933884, 84857915, 359600402, 251890418, 150825016, 135607947, 223594982, 330559689]
+                  "Настя": 402577355,
+                  "Тоня": 492791113,
+                  "Лиза": 565280817,
+                  "Денис": 565712281,
+                  "Лена": 457526700,
+                  }
 
 
 @bot.message_handler(content_types=["voice"])
@@ -105,7 +99,7 @@ def text_handler(message):
             username = bot.get_chat_member(message.chat.id, user_id).user.username
             if username is None:
                 username = "Хербезника"
-            mention = "["+username+"](tg://user?id="+str(user_id)+")"
+            mention = "[" + username + "](tg://user?id=" + str(user_id) + ")"
             mentions.append(mention)
         string = ' '.join(mentions)
         bot.send_message(message.chat.id, string, parse_mode="Markdown")
@@ -119,16 +113,16 @@ def text_handler(message):
             username = bot.get_chat_member(message.chat.id, user_id).user.username
             if username is None:
                 username = "Челбезника"
-            mention = "["+username+"](tg://user?id="+str(user_id)+")"
+            mention = "[" + username + "](tg://user?id=" + str(user_id) + ")"
             mentions.append(mention)
         string = ' '.join(mentions)
         bot.send_message(message.chat.id, string, parse_mode="Markdown")
 
-    # # данный блок собирает id вновь написавших пользователей
-    # if message.from_user.id not in family_members:
-    #     family_members.append(message.from_user.id)
-    #     username = bot.get_chat_member(message.chat.id, message.from_user.id).user.username
-    #     bot.send_message(279478014, f"новый пользователь {username} = {message.from_user.id}")
+    # данный блок собирает id вновь написавших пользователей
+    if message.from_user.id not in family_members.values():
+        # family_members.append(message.from_user.id)
+        username = bot.get_chat_member(message.chat.id, message.from_user.id).user.username
+        bot.send_message(279478014, f"новый пользователь {username} = {message.from_user.id}")
 
 
 bot.polling(none_stop=True)
