@@ -26,7 +26,6 @@ son_pattern_2 = r'[Сс]ына*'
 all_pattern_1 = r'[Рр]ебят'
 all_pattern_2 = r'@all'
 all_pattern_3 = r'@все'
-all_pattern_4 = r'@ребят'
 
 sich_members = {"Я": 279478014,
                 "Влад": 226334433,
@@ -40,7 +39,18 @@ sich_members = {"Я": 279478014,
                 "Кодзима": 330559689,
                 }
 
-family_members = [565280817, 457526700, 402577355, 279478014, 565712281,]
+family_members = {"Я": 279478014,
+                "Денис": 565712281,
+                "Настя": 402577355,
+                "Лена": 457526700,
+                "Лиза": 565280817,
+                "Тоня": 279478014,
+                }
+    # [565280817,
+# 457526700,
+# 402577355,
+# 279478014,
+# 565712281]
 # 279478014, 226334433, 368933884, 84857915, 359600402, 251890418, 150825016, 135607947, 223594982, 330559689]
 
 
@@ -100,14 +110,15 @@ def text_handler(message):
         string = ' '.join(mentions)
         bot.send_message(message.chat.id, string, parse_mode="Markdown")
 
-    matched_7 = re.search(all_pattern_4, message.text)
+    matched_7 = re.search(all_pattern_1, message.text)
     if matched_7:
         usernames = ""
         mentions = []
-        for user_id in family_members:
+        for member in family_members:
+            user_id = family_members[member]
             username = bot.get_chat_member(message.chat.id, user_id).user.username
             if username is None:
-                username = "Хербезника"
+                username = "Челбезника"
             mention = "["+username+"](tg://user?id="+str(user_id)+")"
             mentions.append(mention)
         string = ' '.join(mentions)
