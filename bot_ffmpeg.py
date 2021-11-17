@@ -118,11 +118,11 @@ def text_handler(message):
         string = ' '.join(mentions)
         bot.send_message(message.chat.id, string, parse_mode="Markdown")
 
-    # данный блок собирает id вновь написавших пользователей
-    if message.from_user.id not in family_members.values():
-        # family_members.append(message.from_user.id)
-        username = bot.get_chat_member(message.chat.id, message.from_user.id).user.username
-        bot.send_message(279478014, f"новый пользователь {username} = {message.from_user.id}")
+    # # данный блок собирает id вновь написавших пользователей
+    # if message.from_user.id not in family_members.values():
+    #     # family_members.append(message.from_user.id)
+    #     username = bot.get_chat_member(message.chat.id, message.from_user.id).user.username
+    #     bot.send_message(279478014, f"новый пользователь {username} = {message.from_user.id}")
 
 
 bot.polling(none_stop=True)
