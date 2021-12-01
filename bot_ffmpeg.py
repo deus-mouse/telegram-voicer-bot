@@ -23,7 +23,7 @@ mac_pattern_3 = r'г\*{4}'
 son_pattern_1 = r'[Мм]олодец'
 son_pattern_2 = r'[Сс]ына*'
 
-all_pattern_1 = r'[Рр]ебят'
+all_pattern_1 = r'@[Рр]ебят'
 all_pattern_2 = r'@all'
 all_pattern_3 = r'@все'
 
