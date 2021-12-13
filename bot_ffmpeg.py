@@ -135,11 +135,11 @@ def logic_handler(message):
     #     bot.send_message(279478014, f"новый пользователь {username} = {message.from_user.id}")
 
     # перевод абракадабры
-    matched_9 = re.search(layout_pattern_1, message.text)
-    matched_10 = re.search(layout_pattern_2, message.text)
-    matched_11 = re.search(layout_pattern_3, message.text)
-    if (matched_9 or matched_10) and not matched_10:
-        bot.send_message(message.chat.id, message.text.translate(layout), reply_to_message_id=message.message_id)
+    # matched_9 = re.search(layout_pattern_1, message.text)
+    # matched_10 = re.search(layout_pattern_2, message.text)
+    # matched_11 = re.search(layout_pattern_3, message.text)
+    # if (matched_9 or matched_10) and not matched_10:
+    #     bot.send_message(message.chat.id, message.text.translate(layout), reply_to_message_id=message.message_id)
 
 
 bot.polling(none_stop=True)
