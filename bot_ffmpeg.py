@@ -26,7 +26,7 @@ son_pattern_2 = r'[Сс]ына*'
 all_pattern_1 = r'@all'
 all_pattern_2 = r'@все'
 
-reds_pattern_1 = r'\s[Кк]расн'
+reds_pattern_1 = r'(^|\s)[Кк]расн'
 reds_pattern_2 = r'[Кк]оммунизм[ау]?'
 
 layout_pattern_1 = r'[a-z]'
