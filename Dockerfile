@@ -1,7 +1,7 @@
 FROM python:3.7
 
 RUN mkdir -p /usr/src/voicer-bot/
-RUN apt install ffmpeg
+RUN apt update & apt install ffmpeg
 
 WORKDIR /usr/src/voicer-bot/
 
