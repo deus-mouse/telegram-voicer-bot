@@ -3,7 +3,7 @@ from importlib import reload
 import sys
 from bot.helpers import mac_govno, nice_son, pin_all, communism, abrakadabra_translator, get_audio, convert_ogg_to_wav, \
     audio_speech_recognition
-from instances import *
+from bot.instances import *
 
 
 reload(sys)

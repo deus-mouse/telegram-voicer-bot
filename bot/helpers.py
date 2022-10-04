@@ -1,5 +1,5 @@
 import re
-from instances import *
+from bot.instances import *
 from random import randint
 import subprocess
 
