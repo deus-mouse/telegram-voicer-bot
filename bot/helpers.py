@@ -19,18 +19,19 @@ def nice_son(message):
 
 
 def pin_all(message):
-    matched_5 = re.search(all_pattern_1, message.text)
-    matched_6 = re.search(all_pattern_2, message.text)
-    if matched_5 or matched_6:
-        mentions = []
-        for member in members_dict[message.chat.id]:
-            username = bot.get_chat_member(message.chat.id, member).user.username
-            if username is None:
-                username = "Хербезника"
-            mention = "[" + username + "](tg://user?id=" + str(member) + ")"
-            mentions.append(mention)
-        pin_message = ' '.join(mentions)
-        bot.send_message(message.chat.id, pin_message, parse_mode="Markdown")
+    if message.chat.id in members_dict.keys():
+        matched_5 = re.search(all_pattern_1, message.text)
+        matched_6 = re.search(all_pattern_2, message.text)
+        if matched_5 or matched_6:
+            mentions = []
+            for member in members_dict[message.chat.id]:
+                username = bot.get_chat_member(message.chat.id, member).user.username
+                if username is None:
+                    username = "Хербезника"
+                mention = "[" + username + "](tg://user?id=" + str(member) + ")"
+                mentions.append(mention)
+            pin_message = ' '.join(mentions)
+            bot.send_message(message.chat.id, pin_message, parse_mode="Markdown")
 
 
 def communism(message):

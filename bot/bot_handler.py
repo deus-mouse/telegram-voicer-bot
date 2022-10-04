@@ -26,11 +26,11 @@ def logic_handler(message):
     # message_id = message.message_id
     # from_user_id = message.from_user.id
 
-    mac_govno(message)
+    # mac_govno(message)
     nice_son(message)
     pin_all(message)
-    communism(message)
-    abrakadabra_translator(message)
+    # communism(message)
+    # abrakadabra_translator(message)
     # get_new_member_id(message)
 
 
