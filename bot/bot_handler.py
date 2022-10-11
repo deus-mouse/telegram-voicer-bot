@@ -17,7 +17,7 @@ def voice_handler(message):
         audio_speech_recognition(message, file)
     except Exception as ex:
         # bot.send_message(279478014, ex)
-        print(f'Exception {ex=}')
+        print(f'Exception {ex}')
 
 
 @bot.message_handler(content_types=["text"])
