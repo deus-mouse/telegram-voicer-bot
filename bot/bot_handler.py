@@ -16,7 +16,8 @@ def voice_handler(message):
         file = convert_ogg_to_wav()
         audio_speech_recognition(message, file)
     except Exception as ex:
-        bot.send_message(279478014, ex)
+        # bot.send_message(279478014, ex)
+        print(f'Exception {ex=}')
 
 
 @bot.message_handler(content_types=["text"])
@@ -28,7 +29,7 @@ def logic_handler(message):
 
     # mac_govno(message)
     nice_son(message)
-    pin_all(message)
+    # pin_all(message)
     # communism(message)
     # abrakadabra_translator(message)
     # get_new_member_id(message)
