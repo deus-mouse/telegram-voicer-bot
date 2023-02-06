@@ -15,7 +15,9 @@ def nice_son(message):
     matched_4 = re.search(son_pattern_1, message.text)
     matched_5 = re.search(son_pattern_2, message.text)
     if matched_4 and matched_5 and message.from_user.id == 279478014:  # Я
-        bot.send_message(message.chat.id, "спасибо создатель \U0001F916", reply_to_message_id=message.message_id)
+        # bot.send_message(message.chat.id, "спасибо создатель \U0001F916", reply_to_message_id=message.message_id)
+        bot.reply_to(message, "спасибо создатель \U0001F916")
+    bot.reply_to(message, "!!! спасибо создатель \U0001F916")
 
 
 def pin_all(message):
@@ -95,7 +97,7 @@ def answer_from_chatgpt(prompt: str):
         model="text-davinci-003",
         prompt=prompt,
         temperature=0.5,
-        max_tokens=1000,
+        max_tokens=2000,
         top_p=0.3,
         frequency_penalty=0.5,
         presence_penalty=0.0
@@ -106,8 +108,9 @@ def answer_from_chatgpt(prompt: str):
 
 
 def chatgpt(message):
+    text = str(message.text).replace('@deusmouse_shifterbot', '')
     try:
-        answer = answer_from_chatgpt(message.text)
+        answer = answer_from_chatgpt(text)
         bot.send_message(message.chat.id, answer, reply_to_message_id=message.message_id)
     except Exception as ex:
         bot.send_message(message.chat.id, "sorry, very busy", reply_to_message_id=message.message_id)

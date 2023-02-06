@@ -20,7 +20,8 @@ def voice_handler(message):
         print(f'Exception {ex}')
 
 
-@bot.message_handler(content_types=["text"])
+# @bot.message_handler(content_types=["text"])
+@bot.message_handler(regexp="@deusmouse_shifterbot")
 def logic_handler(message):
     # chat_id = message.chat.id
     # text = message.text
