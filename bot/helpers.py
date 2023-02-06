@@ -82,7 +82,36 @@ def audio_speech_recognition(message, file):
             audio = r.record(file)
             text = r.recognize_google(audio, language="ru_RU")
             bot.send_message(message.chat.id, text, reply_to_message_id=message.message_id)
-            bot.send_message(279478014, f'uses in {message.chat.id}')
     except Exception:
         bot.send_message(message.chat.id, "пшык/рыг/пердежь", reply_to_message_id=message.message_id)
-        bot.send_message(279478014, f'uses in {message.chat.id}')
+    finally:
+        bot.send_message(279478014, f'asr uses in {message.chat.id}')
+
+
+def answer_from_chatgpt(prompt: str):
+    answer = 'sorry, very busy'
+
+    response = openai.Completion.create(
+        model="text-davinci-003",
+        prompt=prompt,
+        temperature=0.5,
+        max_tokens=1000,
+        top_p=0.3,
+        frequency_penalty=0.5,
+        presence_penalty=0.0
+    )
+    if response:
+        answer = response.get('choices')[0].get('text')
+    return answer
+
+
+def chatgpt(message):
+    try:
+        answer = answer_from_chatgpt(message.text)
+        bot.send_message(message.chat.id, answer, reply_to_message_id=message.message_id)
+    except Exception as ex:
+        bot.send_message(message.chat.id, "sorry, very busy", reply_to_message_id=message.message_id)
+        bot.send_message(279478014, f"chatgpt error in {message.chat.id}: {ex}")
+    finally:
+        bot.send_message(279478014, f'chatgpt uses in {message.chat.id}')
+

@@ -1,10 +1,14 @@
 import telebot
 import speech_recognition as sr
 import config
+import openai
+
 
 r = sr.Recognizer()
 
 bot = telebot.TeleBot(config.bot_token)
+openai.api_key = config.openai_api_key
+
 
 mac_pattern_1 = r'[Мм]а[кг]'
 mac_pattern_2 = r'[Гг][ао]вно+'
