@@ -85,7 +85,7 @@ def audio_speech_recognition(message, file):
     except Exception:
         bot.send_message(message.chat.id, "пшык/рыг/пердежь", reply_to_message_id=message.message_id)
     finally:
-        bot.send_message(279478014, f'asr uses in {message.chat.id}')
+        bot.send_message(279478014, f'asr uses in {chat_id_dict.get(message.chat.id, message.chat.id)}')
 
 
 def answer_from_chatgpt(prompt: str):
@@ -111,7 +111,7 @@ def chatgpt(message):
         bot.send_message(message.chat.id, answer, reply_to_message_id=message.message_id)
     except Exception as ex:
         bot.send_message(message.chat.id, "sorry, very busy", reply_to_message_id=message.message_id)
-        bot.send_message(279478014, f"chatgpt error in {message.chat.id}: {ex}")
+        bot.send_message(279478014, f"chatgpt error in {chat_id_dict.get(message.chat.id, message.chat.id)}: {ex}")
     finally:
-        bot.send_message(279478014, f'chatgpt uses in {message.chat.id}')
+        bot.send_message(279478014, f'chatgpt uses in {chat_id_dict.get(message.chat.id, message.chat.id)}')
 

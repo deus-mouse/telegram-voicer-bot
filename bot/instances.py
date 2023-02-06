@@ -27,8 +27,8 @@ layout_pattern_1 = r'[a-z]'
 layout_pattern_2 = r'http'
 layout_pattern_3 = r'www'
 
-members_dict = {-1001331225117:  # сычевальня
-                    {279478014: "Я",
+members_dict = {-1001331225117: { # Zычевальня
+                    279478014: "Я",
                      226334433: "Влад",
                      368933884: "Мех",
                      84857915: "Авдеев",
@@ -46,7 +46,12 @@ members_dict = {-1001331225117:  # сычевальня
                      565280817: "Лиза",
                      565712281: "Денис",
                      457526700: "Лена",
-                     }}
+                     },}
+
+chat_id_dict = {-1001331225117: 'Zычевальня',
+                -282972466: 'BigFamily',
+                -1001602809065: 'RetroLanParty'}
+
 
 layout = dict(zip(map(ord, "qwertyuiop[]asdfghjkl;'zxcvbnm,./`"
                            'QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>?~'),
