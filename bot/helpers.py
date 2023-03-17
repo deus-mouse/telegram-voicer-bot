@@ -92,15 +92,15 @@ def audio_speech_recognition(message, file):
 
 def answer_from_chatgpt(prompt: str):
     answer = 'sorry, very busy'
-
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt=prompt,
-        temperature=0.5,
-        max_tokens=2000,
-        top_p=0.3,
-        frequency_penalty=0.5,
-        presence_penalty=0.0
+        temperature=0.9,
+        max_tokens=150,
+        top_p=1,
+        frequency_penalty=0.0,
+        presence_penalty=0.6,
+        stop=[" Human:", " AI:"]
     )
     if response:
         answer = response.get('choices')[0].get('text')
