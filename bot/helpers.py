@@ -1,7 +1,8 @@
 import re
 from bot.instances import *
-from random import randint
+import random
 import subprocess
+import requests
 
 
 def mac_govno(message):
@@ -9,6 +10,30 @@ def mac_govno(message):
     matched_2 = re.search(mac_pattern_2, message.text)
     if matched_1 and matched_2:
         bot.send_message(message.chat.id, "сам ты говно", reply_to_message_id=message.message_id)
+
+
+def boobs(message):
+    # Замените 'YOUR_API_KEY' на ваш ключ API от Pixabay
+
+    # Выполняем запрос к Pixabay API для поиска изображений
+    url = f"https://pixabay.com/api/?key={config.PIXABAY_API_KEY}&q=sex&image_type=photo"
+    response = requests.get(url)
+    data = response.json()
+
+    # Получаем список изображений из ответа API
+    images = data.get('hits', [])
+
+    if images:
+        # Выбираем случайное изображение из списка
+        random_image = random.choice(images)
+        image_url = random_image.get('webformatURL')
+
+        # Отправляем изображение пользователю
+        # update.message.reply_photo(photo=image_url)
+        bot.send_photo(message.chat.id, image_url, reply_to_message_id=message.message_id)
+    else:
+        # update.message.reply_text("Изображения по данному запросу не найдены.")
+        bot.send_message(message.chat.id, "Изображения по данному запросу не найдены", reply_to_message_id=message.message_id)
 
 
 def nice_son(message):
@@ -40,7 +65,7 @@ def communism(message):
     matched_7 = re.search(reds_pattern_1, message.text)
     matched_8 = re.search(reds_pattern_2, message.text)
     if matched_7 or matched_8:
-        dice = randint(1, 24)
+        dice = random.randint(1, 24)
         if dice < 12:
             bot.send_audio(chat_id=message.chat.id, audio=open(f'media/communism/audio ({dice}).mp3', 'rb'),
                            reply_to_message_id=message.message_id)

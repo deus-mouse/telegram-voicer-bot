@@ -2,7 +2,7 @@
 from importlib import reload
 import sys
 from bot.helpers import mac_govno, nice_son, pin_all, communism, abrakadabra_translator, get_audio, convert_ogg_to_wav, \
-    audio_speech_recognition, chatgpt
+    audio_speech_recognition, chatgpt, boobs
 from bot.instances import *
 
 
@@ -35,4 +35,8 @@ def logic_handler(message):
     # abrakadabra_translator(message)
     # get_new_member_id(message)
 
+
+# @bot.message_handler(regexp="сиськи")
+# def logic_handler(message):
+#     boobs(message)
 
